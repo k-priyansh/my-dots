@@ -1,0 +1,84 @@
+# FallGuy SafeNet Hardener
+
+A ruthless PowerShell script to slap Microsoft’s telemetry nonsense back into place.
+
+## 🎯 What It Does
+- Disables telemetry + media sharing services
+- Blocks outbound network calls from common snooper programs (e.g., OneDriveSetup.exe, MsSense.exe)
+- Doesn't uninstall, just shuts doors and kills whispers
+
+## ⚙️ How to Use
+1. **Run PowerShell as Administrator**
+2. Execute:
+```powershell
+.\FallGuy_SafeNet.ps1
+
+**There are two types of people in the world:**
+
+- 🧼 The Clean — who trust Microsoft, Google, and their toaster.
+- 🔒 The Dirty — who know better.
+
+FallGuy SafeNet is named after the kind of person who's *been burned before* — a FallGuy. The poor bastard blamed when a breach happened, or when user data showed up on Reddit, or when the intern downloaded TikTok on the company laptop.
+
+Now, that FallGuy has learned. Hardened. Paranoid. And this is his revenge.
+
+---
+
+## 🥃 The Philosophy
+
+- **No backdoors. No whispering services. No ghosts at boot.**
+- A machine that doesn’t talk is a safe one.
+- If you need OneDrive, install it **your way** — not the system’s.
+- WMP streaming? Cute. But the FallGuy doesn’t stream. He *rips*.
+
+---
+
+## 🛡️ Who This Is For
+
+- IT techs who’ve been yelled at one too many times
+- Tinfoil sysadmins who write bash scripts in Notepad++
+- Anyone who's typed `netstat -anob` and seen something they didn't like
+
+---
+
+## 🔥 Final Thought
+
+This isn't for normal users.
+
+This is for people who wear headsets to meetings they aren't invited to.
+
+## 🔍 How FallGuy Was Born
+
+> *"Early 2025, I pawned my PC to make rent. When I got it back, I noticed strange files in my OneDrive. Encrypted chunks, renamed binaries, foreign IP logs — none of them mine."*
+
+OneDrive had become a **safe dump** — **my** safe dump — for someone else’s operations.  
+Some bastard was using my Microsoft account as a ghost hard drive for sketchy activity.
+
+That’s when I realized:  
+> Even if you never open OneDrive… they do.  
+> Even if you don’t use the services… they’re running.  
+> Even if you don’t stream… your PC might.
+
+FallGuy SafeNet was forged from that violation.
+
+I built it not to break Windows — but to **make it shut the hell up**.
+
+No deletions. No damage. Just closed doors, severed signals, and a polite middle finger to any process that thinks it owns your box.
+
+---
+
+## 💀 Why Share It?
+
+Because maybe you pawn your PC one day.
+
+Maybe you log in from a hotel WiFi and someone spins up a listener.
+
+Maybe you’re just a broke coder who doesn’t need another fight in his day.
+
+Whatever the reason — **this is your firewall. Your bat signal. Your don’t-mess-with-me button.**
+
+So run it.
+
+And sleep better.
+
+— FallGuy

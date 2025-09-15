@@ -1,0 +1,7 @@
+[wsl2]
+memory=4GB
+processors=2
+
+[automount]
+options = "metadata,umask=22,fmask=11"
+

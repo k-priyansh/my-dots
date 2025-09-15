@@ -1,0 +1,323 @@
+# ---- System -----
+    sudo apt update
+    sudo apt full-upgrade
+    changezsh
+    ifconfig
+    sudo nano /etc/apt/sources.list
+    sudo envycontrol -s integrated
+# ---- Flatpak -----
+    ## Flatpak Installation
+        install flatpak
+        install gnome-software-plugin-flatpak
+        flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+    ## flatpak apps
+        flatpak install flathub com.github.xournalpp.xournalpp
+        flatpak install flathub com.github.jkotra.eovpn
+        flatpak install flathub io.github.congard.qnvsm
+        flatpak install flathub com.expidusos.file_manager
+        flatpak install flathub org.gnome.Logs
+        flatpak install flathub org.gnome.font-viewer
+        flatpak install flathub org.angryip.ipscan
+        flatpak install flathub io.github.prateekmedia.appimagepool
+        flatpak install flathub com.leinardi.gwe
+        flatpak install flathub org.gnome.Firmware
+        flatpak install flathub io.emeric.toolblex
+        flatpak install flathub org.dupot.easyflatpak
+        flatpak install flathub org.kde.index
+        flatpak install flathub com.geekbench.Geekbench6
+        flatpak install flathub org.virt_manager.virt-manager
+        flatpak install flathub ca.desrt.dconf-editor
+        flatpak install flathub net.nokyan.Resources
+        flatpak install flathub org.spyder_ide.spyder
+        flatpak install flathub org.jupyter.JupyterLab
+        flatpak install flathub rest.insomnia.Insomnia
+        flatpakn install flathub com.todoist.Todoist
+        flatpak install flathub net.xmind.XMind
+        flatpak install flathub com.todoist.Todoist
+        flatpak install flathub com.geekbench.Geekbench6
+        flatpak install flathub org.blender.Blender
+        flatpak install flathub org.gnome.Shotwell
+        flatpak install flathub org.gnome.eog
+        flatpak install flathub com.spotify.Client
+        flatpak install flathub org.filezillaproject.Filezilla
+        flatpak install flathub org.gnome.Boxes
+        flatpak install flathub com.google.AndroidStudio
+        flatpak install flathub io.github.shiftey.Desktop
+        flatpak install flathub io.podman_desktop.PodmanDesktop
+        flatpak install flathub md.obsidian.Obsidian
+        flatpak install flathub org.gnome.Loupe
+        flatpak install flathub com.obsproject.Studio
+        flatpak install flathub org.telegram.desktop
+        flatpak install flathub com.discordapp.Discord
+        flatpak install flathub com.brave.Browser
+        flatpak install flathub io.github.zen_browser.zen
+        flatpak install flathub com.bitwarden.desktop
+        flatpak install flathub com.github.tchx84.Flatseal
+        flatpak install flathub io.github.flattool.Warehouse
+        flatpak install flathub com.getpostman.Postman
+        flatpak install flathub io.beekeeperstudio.Studio
+        flatpak install flathub org.gnome.baobab
+        flatpak install flathub org.gnome.Maps
+        flatpak install flathub org.gnome.Epiphany
+        flatpak install flathub org.gimp.GIMP
+            # Gimp Plugins
+            flatpak install flathub org.gimp.GIMP.Plugin.GMic
+            flatpak install org.gimp.GIMP.Plugin.Resynthesizer
+            flatpak install org.gimp.GIMP.Plugin.LiquidRescale
+            flatpak install org.gimp.GIMP.Plugin.Lensfun org.gimp.GIMP.Plugin.GMic
+            flatpak install org.gimp.GIMP.Plugin.Fourier org.gimp.GIMP.Plugin.FocusBlur
+            flatpak install org.gimp.GIMP.Plugin.BIMP
+# ---- Docker ----
+    sudo docker volume create portainer_data
+    # portainer
+        sudo docker run -d -p 8000:8000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:2.9.3
+    # portainer agent
+        sudo docker run -d -p 9001:9001 --name portainer_agent --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker/volumes:/var/lib/docker/volumes portainer/agent:2.9.3
+    # kalilinux/Rolling
+        sudo docker run -d -p 8001:8001 -p 9445:9445 --name kalilinux --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v bugboounty:/data kalilinux/kali-rolling
+# ---- Nautilus -----
+    ## Directory Creation
+        sudo mkdir ~/.local/share/nautilus-python && mkdir ~/.local/share/nautilus-python/extensions
+    ## Extensions
+        ### Ext 1: vscode-nautilus
+            bash <(wget -qO- https://raw.githubusercontent.com/ZanzyTHEbar/vscode-nautilus/main/install.sh)
+
+        ### Ext 2: nautilus-copypath
+            git clone https://github.com/ronen25/nautilus-copypath
+            cd ./nautilus-copypath
+            cp nautilus-copypath.py ~/.local/share/nautilus-python/extensions/
+            cp nautilus-copywinpath.py ~/.local/share/nautilus-python/extensions/
+            nautilus -q
+            sudo killall nautilus
+
+        ### Ext 3: nautilus-scripts
+            git clone https://github.com/cfgnunes/nautilus-scripts.git
+            cd nautilus-scripts
+            ./install.sh
+            sudo ./install.sh
+            bash install.sh
+
+        ### Ext 4: nautilus-fileconverter
+            git clone https://github.com/derVedro/Nautilus-fileconverter-43.git
+            cd Nautilus-fileconverter-43
+            sudo mv nautilus-fileconverter.py /usr/share/nautilus-python/extensions/nautilus-fileconverter.py
+
+        ### Ext 5: actions-for-nautilus
+            git clone https://github.com/bassmanitram/actions-for-nautilus.git
+            cd actions-for-nautilus
+            sudo make install_global
+            nautilus -q
+
+        ### Ext 6: nautilus-search-by-image
+            git clone https://github.com/jle64/nautilus-search-by-image && cd nautilus-search-by-image\
+            install -D search-by-image.py "${XDG_DATA_HOME-${HOME}/.local/share}/nautilus-python/extensions/search-by-image.py"\
+            nautilus -q
+
+        ### Ext 7: nautilus-bluetooth
+            git clone https://github.com/madmurphy/nautilus-bluetooth.git
+            cd nautilus-bluetooth
+            ./bootstrap\
+            make -C po nautilus-bluetooth.pot\
+            (cd po && msginit -l nl)\
+            ./bootstrap --clean
+
+        ### Ext 8: nautilus-new-folder-from-template
+            git clone https://github.com/JoePittsy/nautilus-new-folder-from-template.git
+            cd nautilus-new-folder-from-template
+            bash install.sh
+            nautilus -q
+
+        ### Ext 9: nautilus-gnome-disks
+            git clone https://github.com/thebitstick/nautilus-gnome-disks.git
+            cd nautilus-gnome-disks
+            cp nautilus-gnome-disks.py ~/.local/share/nautilus-python/extensions/
+            nautilus -q
+# ---- Apps Install -----
+    ## Apps
+        sudo gem install colorls
+        # secman
+        npm install -g secman
+        sudo npm install -g secman
+        install ruby-full
+        install dolphin
+        install Index
+        install xrandr
+        install polybar
+        install devilspie2
+        install xdotool
+        install fonts-font-awesome
+        install appmenu-gtk-module-common
+        install libdbusmenu-gtk3-4
+        install libdbusmenu-qt5-2
+        install vala-panel-appmenu
+        install appmenu-qt5
+        install ffmpeg 7zip jq poppler-utils 
+        install fd-find ripgrep fzf zoxide 
+        install imagemagick
+        install asciinema
+        install chromium
+        install nvidia-detect
+        install nvidia-driver nvidia-cuda-toolkit
+        install ranger
+        install cisco-auditing-tool
+        install gimp
+        install screenfetch
+        install ranger
+        install apkinfo apktool
+        install dunst
+        install netdiscover
+        install arp-scan
+        install libnautilus-extension1a git python3.8 
+        install python3-requests python3-nautilus python3-gi
+        install nautilus-python
+        install nautilus-kdeconnect nautilus-data
+        install nautilus-admin
+        install imagemagick nautilus-image-converter
+        install battery-stats
+        install fzf
+        install git-delta
+        install ffmpeg
+        install pipx
+        install binutils-gold gcc git libcurl4-openssl-dev libedit-dev 
+        install libicu-dev libncurses-dev libpython3-dev libsqlite3-dev 
+        install libxml2-dev pkg-config tzdata uuid-dev
+        install lynx
+        install direnv
+        install zoxide
+        install thefuck
+        install eza
+        install vlc
+        install audacity
+        install golang rust-all python3
+        install htop btop tytop
+        install htop btop
+        install gotop
+        install build-essential curl wget git
+        install autojump
+        install sysstat ifstat
+        install net-tools iftop nmap iperf3 traceroute
+        install nmtui
+        install speedtest-cli speed
+        install sd
+        install taskwarrior
+        install tee
+    ## Debian Package Files
+        install ./Insomnia.Core-10.0.0.deb
+        install ./Spacedrive-linux-x86_64.deb
+        install ./discord-0.0.72.deb
+        install ./exifcleaner_3.6.0_amd64.deb
+        install ./jellyfin-server_10.9.9+deb11_amd64.deb
+        install ./microsoft-edge-stable_128.0.2739.67-1_amd64.deb
+        install ./splunk.deb
+        install ./warp-terminal_0.2024.09.17.08.02.stable.01_amd64.deb
+        install ./bat_0.24.0_amd64.deb
+        install ./megasync-Debian_12_amd64.deb
+        install ./nautilus-megasync-Debian_12_amd64.deb
+        install ./LocalSend-1.16.1-linux-x86-64.deb
+        install ./CiscoPacketTracer822_amd64_signed.deb
+        install ./jdk-23_linux-x64_bin.deb
+        install ./code_1.95.2-1730981514_amd64.deb
+        install ./google-chrome-stable_current_amd64.deb
+        install ./python3-envycontrol_3.5.1-1_all.deb
+        install ./virtualbox-7.1_7.1.4-165100\~Debian\~bookworm_amd64.deb
+        install ./semaphore_2.11.0-beta6_linux_386.deb
+        npm install -g code-theme-converter
+    ## Scripts
+        bash Anaconda3-2024.06-1-Linux-x86_64.sh
+        bash brew-install.sh
+        curl -sL https://u.secman.dev | bash
+        curl -fsSL https://cutt.ly/tran-cli | bash
+        sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+        bash <(wget -qO- https://git.io/vAtmB)
+    ## Appimage
+        sudo ./DadroitJSONViewer.AppImage
+install $(cat tools.list | tr "\n" " ") -y
+# ---- Git Clone -----
+    git clone https://github.com/bug-priyansh/dotfiles.git
+    git clone https://github.com/vinceliuice/Colloid-icon-theme.git
+    git clone https://github.com/vinceliuice/Tela-icon-theme.git
+    git clone https://github.com/vinceliuice/WhiteSur-icon-theme.git
+    git clone https://github.com/vinceliuice/WhiteSur-gtk-theme.git
+    git clone https://github.com/kallehallden/lowpy.git
+# ---- Service -----
+    sudo systemctl enable bluetooth
+    sudo service bluetooth start
+    sudo systemctl enable bluetooth.service
+# ---- ZSH -----
+    ## powerlevel10k
+        sudo git clone https://github.com/romkatv/powerlevel10k.git $ZSH_CUSTOM/themes/powerlevel10k
+        git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+        git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting\
+        zsh <(curl -s https://raw.githubusercontent.com/zap-zsh/zap/master/install.zsh) --branch release-v1
+        p10k configure
+    ## linuxbrew
+        echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> /home/ipriyansh/.zshrc\
+            eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"\
+    ## bat
+        mkdir -p "$(bat --config-dir)/themes" && cd "$(bat --config-dir)/themes"
+# ---- Swift -----
+    export PATH=$HOME/.swift-6.0.1-RELEASE-debian12/usr/bin:"${PATH}"
+# ---- Wezterm Install -----
+    curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /etc/apt/keyrings/wezterm-fury.gpg
+    echo 'deb [signed-by=/etc/apt/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+    sudo apt update
+    install wezterm
+# ---- java -----
+    pip3 install install-jdk
+    java -jar jython-installer-2.7.4-javadoc.jar --console
+# ---- Tools -----
+    ## Tools Installing
+        go install -v github.com/projectdiscovery/httpx/cmd/httpx@latest
+        go install -v github.com/projectdiscovery/pdtm/cmd/pdtm@latest
+    ## Tools Setup
+        ### pdtm
+            pdtm -install-all
+        ### httpx
+            httpx --auth
+            httpx -auth
+            httpx -dashboard
+            httpx -l target.txt -dashboard
+            httpx --auth 3ddfdfa3-2ecf-4ab4-aa40-b2019b71c10c
+        ### nuclei
+            nuclei -auth
+            nuclei -target http://honey.scanme.sh -cloud-upload\
+# ---- firewall ----
+    sudo apt-get install ufw
+    sudo ufw disable
+    sudo ufw allow ssh/tcp
+    sudo ufw limit ssh/tcp
+    sudo ufw allow 19683/tcp
+    sudo ufw logging on
+    sudo ufw enable
+    sudo ufw status
+# ---- Sublime-text ----
+    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/sublimehq-archive.gpg > /dev/null
+    echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
+    sudo apt-get update\
+    sudo apt-get install sublime-text
+# ---- python lib ----
+    python3 -m venv myenv && source myenv/bin/activate
+    pip3 install customtkinter
+    pip3 install cryptography
+    pip3 install tk-tools
+    pip3 install customtkinter
+# --- Apps ----
+    ## zed
+        ### Themes
+            cd .config/zed/themes/
+            git clone https://github.com/EFDos/iceberg-zed-theme.git
+
+# ---
+
+nano .config/devilspie2/ghosty_center.lua
+devilspie2 &
+
+``` bash .config/devilspie2/ghosty_center.lua
+if (get_window_name() == "ghostty") then
+    set_window_position(800,600)
+end
+```
+
+
+
+

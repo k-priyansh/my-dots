@@ -1,0 +1,5 @@
+psutil 
+gputil 
+requests
+python-dotenv
+discord.py

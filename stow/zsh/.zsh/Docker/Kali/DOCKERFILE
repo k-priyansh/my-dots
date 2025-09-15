@@ -1,0 +1,154 @@
+# Use Kali Linux as the base image
+FROM kalilinux/kali-rolling
+
+# Set metadata (optional)
+# LABEL maintainer="Your Name <your.email@example.com>"
+
+# Update and install basic tools
+RUN apt update && apt upgrade -y && \
+    apt install -y net-tools iputils-ping wget curl nano zsh\
+    #!/bin/bash
+    apt-get -y update \
+    # apt install -y kali-linux-default kali-tools-gpu kali-tools-hardware kali-tools-crypto-stego kali-tools-fuzzing kali-tools-802-11 kali-tools-bluetooth kali-tools-rfid kali-tools-sdr kali-tools-voip kali-tools-windows-resources kali-linux-labs \
+    apt-get -y upgrade \
+    apt-get install -y libcurl4-openssl-dev \
+    apt-get install -y libssl-dev \
+    apt-get install -y jq \
+    apt-get install -y ruby-full \
+    apt-get install -y libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev \
+    apt-get install -y build-essential libssl-dev libffi-dev python-dev \
+    apt-get install -y python-setuptools\
+    apt-get install -y libldns-dev  \
+    apt-get install -y python3-pip \
+    apt-get install -y python-pip \
+    apt-get install -y python-dnspython \
+    apt-get install -y git \
+    apt-get install -y rename \
+    apt-get install -y xargs \
+    # echo "installing bash_profile aliases from recon_profile" \
+    git clone https://github.com/nahamsec/recon_profile.git \
+    cd recon_profile \
+    cat bash_profile >> ~/.bash_profile \
+    source ~/.bash_profile \
+    cd ~/tools/ \
+    echo "done" \
+    # echo "Installing Golang" \
+    wget https://dl.google.com/go/go1.13.4.linux-amd64.tar.gz \
+    tar -xvf go1.13.4.linux-amd64.tar.gz \
+    mv go /usr/local \
+    export GOROOT=/usr/local/go \
+    export GOPATH=$HOME/go \
+    export PATH=$GOPATH/bin:$GOROOT/bin:$PATH \
+    echo 'export GOROOT=/usr/local/go' >> ~/.bash_profile \
+    echo 'export GOPATH=$HOME/go'	>> ~/.bash_profile \
+    echo 'export PATH=$GOPATH/bin:$GOROOT/bin:$PATH' >> ~/.bash_profile \
+    source ~/.bash_profile \
+    #Don't forget to set up AWS credentials!
+    echo "Don't forget to set up AWS credentials!" \
+    apt install -y awscli \
+    echo "Don't forget to set up AWS credentials!" \
+    #create a tools folder in ~/
+    mkdir ~/tools \
+    cd ~/tools/  \
+    #install aquatone
+    echo "Installing Aquatone" \
+    go get github.com/michenriksen/aquatone \
+    echo "done" \
+    #install chromium
+    echo "Installing Chromium" \
+    apt install chromium \
+    echo "done" \
+    echo "installing JSParser" \
+    git clone https://github.com/nahamsec/JSParser.git \
+    cd JSParser* \
+    python3 setup.py install \
+    cd ~/tools/ \
+    echo "done" \
+    apt install pipx \
+    echo "installing Sublist3r" \
+    git clone https://github.com/aboul3la/Sublist3r.git \
+    cd Sublist3r* \
+    pipx install -r requirements.txt \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing teh_s3_bucketeers" \
+    git clone https://github.com/tomdev/teh_s3_bucketeers.git \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing wpscan" \
+    git clone https://github.com/wpscanteam/wpscan.git \
+    cd wpscan* \
+    gem install bundler && bundle install --without test \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing dirsearch" \
+    git clone https://github.com/maurosoria/dirsearch.git \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing lazys3" \
+    git clone https://github.com/nahamsec/lazys3.git \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing virtual host discovery" \
+    git clone https://github.com/jobertabma/virtual-host-discovery.git \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing sqlmap" \
+    git clone --depth 1 https://github.com/sqlmapproject/sqlmap.git sqlmap-dev \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing knock.py" \
+    git clone https://github.com/guelfoweb/knock.git \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing lazyrecon" \
+    git clone https://github.com/nahamsec/lazyrecon.git \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing nmap" \
+    apt-get install -y nmap \
+    echo "done" \
+    echo "installing massdns" \
+    git clone https://github.com/blechschmidt/massdns.git \
+    cd ~/tools/massdns \
+    make \
+    cd ~/tools/ \
+    echo "done \
+    echo "installing asnlookup" \
+    git clone https://github.com/yassineaboukir/asnlookup.git \
+    cd ~/tools/asnlookup \
+    pipx install -r requirements.txt \
+    cd ~/tools/ \
+    echo "done" \
+    echo "installing httprobe" \
+    go get -u github.com/tomnomnom/httprobe \
+    echo "done" \
+    echo "installing unfurl" \
+    go get -u github.com/tomnomnom/unfurl \
+    echo "done" \
+    echo "installing waybackurls" \
+    go get github.com/tomnomnom/waybackurls \
+    echo "done" \
+    echo "installing crtndstry" \
+    git clone https://github.com/nahamsec/crtndstry.git \
+    echo "done" \
+    echo "downloading Seclists" \
+    cd ~/tools/ \
+    git clone https://github.com/danielmiessler/SecLists.git \
+    cd ~/tools/SecLists/Discovery/DNS/ \
+    ##THIS FILE BREAKS MASSDNS AND NEEDS TO BE CLEANED
+    cat dns-Jhaddix.txt | head -n -14 > clean-jhaddix-dns.txt \
+    cd ~/tools/ \
+    echo "done"
+
+# Optional: Install additional tools (customize as needed)
+RUN apt install -y metasploit-framework nmap sqlmap
+
+# Set a working directory (optional)
+WORKDIR /root
+
+# Expose necessary ports (if running services/tools that require them)
+# EXPOSE <port-number>
+
+# Command to start a shell (or replace with specific tool execution)
+CMD ["/bin/bash"]
